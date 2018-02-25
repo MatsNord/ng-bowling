@@ -3,20 +3,17 @@
     <p>Bowling</p>
   </div>
   <div class="col">
-    <p>Rounds played: {{itemCount}}  total score: {{score}}</p>
+    <p><span>Rounds played: {{itemCount}}</span></p>
   </div>
 </div>
 <!-- [@...] triggers the animation -->
 <div class="container color-light" [@scores]="scores.length">
   <div class="col">
     <p class="sm">Your round!</p>
-    <form>
       <input type="number" min="0" max="10" class="txt" name="rollfield" placeholder="first roll" [(ngModel)]="first" (blur)="showThird()" >
-      <input [disabled]="isStrike()" type="number"  min="0" max="{{maxVal2}}"  class="txt" name="rollfield" placeholder="second roll" [(ngModel)]="second" (blur)="showThird()">
+      <input [disabled]="first === 10 && frames.length === 10" type="number"  min="0" max="{{maxVal2}}"  class="txt" name="rollfield" placeholder="second roll" [(ngModel)]="second" (blur)="showThird()">
       <input [disabled]="frames.length === 10" type="submit" class="btn" [value]="btnText" (click)="checkScore()">
-    </form>
   </div>
-
   <div class="col">
     <p class="score-container" *ngFor="let score of scores; let i = index"  (click)="removeItem(i)">
         {{score}}
