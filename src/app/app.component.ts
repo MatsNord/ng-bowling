@@ -13,9 +13,7 @@ import { DataService } from './data.service';
 })
 
 export class AppComponent {
-  title = 'app';
-
-
+  title = 'Angular Bowling App, NodeJS/Express backend';
 
   constructor(private http: HttpClient, private _dataService: DataService) {}
 

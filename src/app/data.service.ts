@@ -9,9 +9,7 @@ export class DataService {
 
   constructor() { }
 
-
   addScore(score) {
     this.scores.next(score)
   }
-
 }

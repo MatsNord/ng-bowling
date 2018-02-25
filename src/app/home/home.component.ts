@@ -65,16 +65,11 @@ export class HomeComponent implements OnInit {
     /** Get new score from the bowling serivice */
     const frames = {frames: [{first: 1, second: 2}]};
     this._bowling.getScore(frames)
-      .subscribe( result => [...this.scores, result.score]);
-
-    /* Update the display*/
-    // Scores go into the scores list
-    this.scores.push(this.scoreText);
-    // Use serice to publish the scores
-    this._data.addScore(this.scores);
-
-    this.scoreText = '';
-    this.itemCount = this.scores.length;
+      .subscribe( result => {
+        this.scores = [...this.scores, result.score];
+        this._data.addScore(this.scores);
+        this.itemCount = this.scores.length;
+      });
   }
 
   removeItem(i) {
