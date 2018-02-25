@@ -12,9 +12,11 @@
     <p class="sm">Your round!</p>
 
     <form>
-      <input type="number" class="txt" name="item" placeholder="first" [(ngModel)]="scoreText" >
+      <input type="number" class="txt" name="rollfield" placeholder="first roll" [(ngModel)]="first" >
 
-      <input type="number" class="txt" name="rollfield" placeholder="second" [(ngModel)]="roll2" >
+      <input type="number" class="txt" name="rollfield" placeholder="second roll" [(ngModel)]="second" >
+
+      <input type="number" class="txt" name="rollfield" placeholder="Third roll" [(ngModel)]="third" >
 
       <input type="submit" class="btn" [value]="btnText" (click)="checkScore()">
     </form>

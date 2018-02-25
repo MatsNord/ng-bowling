@@ -34,6 +34,9 @@ export class HomeComponent implements OnInit {
   itemCount: number;
   btnText: string = 'Check scores';
   scoreText: string = 'My first score';
+  first: number;
+  second: number;
+  frames = [];
   scores = [];
 
   // Here I can set up my rolls..
@@ -52,21 +55,24 @@ export class HomeComponent implements OnInit {
 
       // here you have to add the
      // this._data.changeGoal(this.goals);
-
       this._data.addScore(this.scores);
 
     }
 
-
-
     // Using Bowling service
   checkScore() {
 
+    const first = this.first;
+    const second = this.second;
+
     /** Get new score from the bowling serivice */
-    const frames = {frames: [{first: 1, second: 2}]};
+    this.frames.push({first, second});
+
+    const frames = {frames: [...this.frames]};
+
     this._bowling.getScore(frames)
       .subscribe( result => {
-        this.scores = [...this.scores, result.score];
+        this.scores.push(result.score);
         this._data.addScore(this.scores);
         this.itemCount = this.scores.length;
       });
