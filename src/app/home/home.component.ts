@@ -34,10 +34,13 @@ export class HomeComponent implements OnInit {
   itemCount: number;
   btnText: string = 'Check scores';
   scoreText: string = 'My first score';
-  first: number;
-  second: number;
-  frames = [];
-  scores = [];
+  first: number = 0;
+  second: number = 0;
+  maxVal2: number = 10;
+  frames: Array<Object> = [];
+  scores: Array<number> = [];
+
+  show = false;
 
   // Here I can set up my rolls..
 
@@ -62,6 +65,8 @@ export class HomeComponent implements OnInit {
     // Using Bowling service
   checkScore() {
 
+    this.show = false;
+
     const first = this.first;
     const second = this.second;
 
@@ -75,7 +80,21 @@ export class HomeComponent implements OnInit {
         this.scores.push(result.score);
         this._data.addScore(this.scores);
         this.itemCount = this.scores.length;
+
+        this.first = 0;
+        this.second = 0;
+
       });
+  }
+
+  isStrike() {
+    return ( this.first === 10 && this.frames.length !== 9 );
+  }
+
+  showThird(){
+    const first = this.first;
+    const second = this.second;
+    this.show = (this.frames.length === 9 && first === 10 && second === 10);
   }
 
   removeItem(i) {
