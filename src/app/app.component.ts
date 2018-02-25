@@ -1,4 +1,9 @@
 import { Component } from '@angular/core';
+import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs/Observable';
+
+import { DataService } from './data.service';
+
 
 // decoratator that specifies different parts in my component
 @Component({
@@ -9,4 +14,9 @@ import { Component } from '@angular/core';
 
 export class AppComponent {
   title = 'app';
+
+
+
+  constructor(private http: HttpClient, private _dataService: DataService) {}
+
 }

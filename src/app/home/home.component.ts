@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { trigger, style, transition, animate, keyframes, query, stagger } from '@angular/animations';
 import { DataService } from '../data.service';
+import { BowlingService } from '../bowling.service';
 
 @Component({
   selector: 'app-home',
@@ -33,12 +34,12 @@ export class HomeComponent implements OnInit {
   itemCount: number;
   btnText: string = 'Check scores';
   scoreText: string = 'My first score';
-  scores = ['a score'];
+  scores = [];
 
   // Here I can set up my rolls..
 
   // Dependency inejection, to that the dataservoce can be used, throw the cunstructure...
-  constructor( private _data: DataService ) { }
+  constructor( private _data: DataService, private _bowling: BowlingService ) { }
 
   // Life cycle init..
     ngOnInit() {
@@ -56,19 +57,28 @@ export class HomeComponent implements OnInit {
 
     }
 
-  addItem() {
 
-    // use the service here, to add a score.
 
+    // Using Bowling service
+  checkScore() {
+
+    /** Get new score from the bowling serivice */
+    const frames = {frames: [{first: 1, second: 2}]};
+    this._bowling.getScore(frames)
+      .subscribe( result => [...this.scores, result.score]);
+
+    /* Update the display*/
+    // Scores go into the scores list
     this.scores.push(this.scoreText);
+    // Use serice to publish the scores
+    this._data.addScore(this.scores);
+
     this.scoreText = '';
     this.itemCount = this.scores.length;
-    this._data.addScore(this.scores);
   }
 
   removeItem(i) {
     this.scores.splice(i, 1);
     this._data.addScore(this.scores);
-
   }
 }

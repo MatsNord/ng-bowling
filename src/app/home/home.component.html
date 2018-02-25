@@ -3,7 +3,7 @@
     <p>Bowling</p>
   </div>
   <div class="col">
-    <p>Your scores ({{itemCount}})</p>
+    <p>Rounds played({{itemCount}})</p>
   </div>
 </div>
 <!-- [@...] triggers the animation -->
@@ -16,7 +16,7 @@
 
       <input type="text" class="txt" name="rollfield" placeholder="second" [(ngModel)]="roll2" >
 
-      <input type="submit" class="btn" [value]="btnText" (click)="addItem()">
+      <input type="submit" class="btn" [value]="btnText" (click)="checkScore()">
     </form>
   </div>
 
