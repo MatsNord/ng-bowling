@@ -11,8 +11,8 @@ import { DataService } from '../data.service';
 })
 export class AboutComponent implements OnInit {
 
-  // define goals in this class
-  goals: any;
+  // define in this class
+  scores: any;
 
   constructor(private route: ActivatedRoute, private router: Router, private _data: DataService) {
 
@@ -20,7 +20,7 @@ export class AboutComponent implements OnInit {
   }
 
   ngOnInit() {
-    this._data.goal.subscribe( res=> this.goals = res);
+    this._data.score.subscribe( res=> this.scores = res);
   }
 
   sendMeHome(){

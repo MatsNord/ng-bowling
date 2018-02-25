@@ -7,7 +7,7 @@ import { DataService } from '../data.service';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
   animations: [
-    trigger('goals', [
+    trigger('scores', [
       transition('* => *', [
         query(':enter', style({ opacity: 0}), {optional: true}),
 
@@ -31,9 +31,9 @@ import { DataService } from '../data.service';
 export class HomeComponent implements OnInit {
 
   itemCount: number;
-  btnText: string = 'Add an item';
-  goalText: string = 'My first goal';
-  goals = ['a goal'];
+  btnText: string = 'Check scores';
+  scoreText: string = 'My first score';
+  scores = ['a score'];
 
   // Here I can set up my rolls..
 
@@ -43,21 +43,32 @@ export class HomeComponent implements OnInit {
   // Life cycle init..
     ngOnInit() {
     // updating the model item count by the length of items
-      this._data.goal.subscribe( res => this.goals = res);
-      this.itemCount = this.goals.length;
-      this._data.changeGoal(this.goals);
+
+      this._data.score.subscribe( res => this.scores = res);
+
+      // Here you hav to set the point from last roll
+      this.itemCount = this.scores.length;
+
+      // here you have to add the
+     // this._data.changeGoal(this.goals);
+
+      this._data.addScore(this.scores);
 
     }
 
   addItem() {
-    this.goals.push(this.goalText);
-    this.goalText = '';
-    this.itemCount = this.goals.length;
-    this._data.changeGoal(this.goals);
+
+    // use the service here, to add a score.
+
+    this.scores.push(this.scoreText);
+    this.scoreText = '';
+    this.itemCount = this.scores.length;
+    this._data.addScore(this.scores);
   }
 
   removeItem(i) {
-    this.goals.splice(i, 1);
-    this._data.changeGoal(this.goals);
+    this.scores.splice(i, 1);
+    this._data.addScore(this.scores);
+
   }
 }
