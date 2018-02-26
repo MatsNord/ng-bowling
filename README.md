@@ -1,4 +1,8 @@
-# Ng5
+# ng-bowling
+This is s simple ui for simulating a bowling game, or if you like, it helps you count the scores. :-) 
+
+## Dependencies
+It has dependency to a REST API service, that is staticly bound on http://localhost:3000/api/play. They code to the servic is also on github: [bowling-service](https://github.com/MatsNord/bowling-service). The API is described on the the readme.md for bowling-service
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.7.1.
 
