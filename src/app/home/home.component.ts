@@ -91,6 +91,18 @@ export class HomeComponent implements OnInit {
     return ( this.first === 10 && this.frames.length !== 9 );
   }
 
+  checkValue1(event){
+    if (event.target.value > 10) event.target.value = 10;
+
+  }
+
+  checkValue2(event){
+    console.log(event.target.name);
+    if (this.first + event.target.value > 10){
+      event.target.value = 10 - this.first;
+    }
+  }
+
   showThird(){
     const first = this.first;
     const second = this.second;

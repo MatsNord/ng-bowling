@@ -10,10 +10,12 @@
 <div class="container color-light" [@scores]="scores.length">
   <div class="col">
     <p class="sm">Your round!</p>
-      <input type="number" min="0" max="10" class="txt" name="rollfield" placeholder="first roll" [(ngModel)]="first" (blur)="showThird()" >
-      <input [disabled]="first === 10 && frames.length === 10" type="number"  min="0" max="{{maxVal2}}"  class="txt" name="rollfield" placeholder="second roll" [(ngModel)]="second" (blur)="showThird()">
-      <input [disabled]="frames.length === 10" type="submit" class="btn" [value]="btnText" (click)="checkScore()">
-  </div>
+    <form>
+      <input type="number" min="0" max="10" class="txt" name="rollfield1" placeholder="first roll" [(ngModel)]="first" #one (keyup)="checkValue1($event)" >
+      <input [disabled]="first === 10 && frames.length === 10" type="number"  min="0" max="{{10 - first}}"  class="txt" name="rollfield2" placeholder="second roll" [(ngModel)]="second" (keyup)="checkValue2($event)">
+      <input [disabled]="frames.length === 10" type="button" class="btn" [value]="btnText" (click)="checkScore()">
+    </form>
+    </div>
   <div class="col">
     <p class="score-container" *ngFor="let score of scores; let i = index"  (click)="removeItem(i)">
         {{score}}
