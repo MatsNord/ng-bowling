@@ -1,13 +1,9 @@
 pipeline {
   agent any
   stages {
-    stage('Checkout') {
-      agent any
-      environment {
-        CI = 'true'
-      }
+    stage('Source') {
       steps {
-        git(url: 'https://github.com:MatsNord/ng-bowling.git', branch: 'master', credentialsId: 'MatsNord', poll: true)
+        git(url: 'https://github.com/MatsNord/ng-bowling.git', branch: 'master', changelog: true, credentialsId: 'MatsNord', poll: true)
       }
     }
   }
