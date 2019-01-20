@@ -3,7 +3,7 @@ pipeline {
   stages {
     stage('Checkout') {
       steps {
-        git(url: 'git@github.com:MatsNord/ng-bowling.git', branch: 'master', credentialsId: 'nord.mats@gmail.com')
+        git(url: 'https://github.com:MatsNord/ng-bowling.git', branch: 'master', credentialsId: 'MatsNord', poll: true)
       }
     }
   }
